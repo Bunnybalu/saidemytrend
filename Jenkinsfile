@@ -11,10 +11,10 @@ pipeline {
 	}
 	stage ("SonarQube analysis") {
 		environment {
-			scannerHome = tool 'saidemy-sonarQube-scanner'
+			scannerHome = tool 'saidemy-sonar-scanner'
 	   }
 	    steps {
-		with SonarQubeEnv('saidemy-sonarQube-scanner') {
+		with SonarQubeEnv('sonarQube-scanner') {
 			sh "${scannerHome}/bin/sonar-scanner"
 		}
 	}
