@@ -31,7 +31,20 @@ pipeline {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
+
+	}
+	   stage("Quality Gate") {
+	  steps {
+		script {
+		timeOut(time:1,unit:'HOURS') {
+		def qg = waitforQualityGate()
+		if (qg.status 'OK')
+		error "pipeline aborted due to Quality Gate failure. $(qg.status)"
+
+
         }
 
     }
+}
+}
 }
